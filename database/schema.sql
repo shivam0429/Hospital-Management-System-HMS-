@@ -1,5 +1,3 @@
-CREATE DATABASE IF NOT EXISTS hospital_db;
-USE hospital_db;
 
 CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -59,8 +57,11 @@ CREATE TABLE IF NOT EXISTS bills (
     consultation_fee DECIMAL(10,2) DEFAULT 0,
     medicine_fee DECIMAL(10,2) DEFAULT 0,
     lab_fee DECIMAL(10,2) DEFAULT 0,
-    total_amount DECIMAL(10,2) GENERATED ALWAYS AS (consultation_fee + medicine_fee + lab_fee) STORED,
+    total_amount DECIMAL(10,2) DEFAULT 0,
     payment_status ENUM('Pending','Paid') DEFAULT 'Pending',
+    order_id VARCHAR(200),
+    payment_id VARCHAR(200),
+    payment_signature VARCHAR(300),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (patient_id) REFERENCES patients(id) ON DELETE CASCADE,
     FOREIGN KEY (appointment_id) REFERENCES appointments(id) ON DELETE SET NULL

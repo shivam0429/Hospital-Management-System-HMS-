@@ -15,10 +15,10 @@ app = Flask(__name__)
 app.secret_key = os.getenv("FLASK_SECRET_KEY", "hospital-dev-secret")
 
 DB_CONFIG = {
-    "host": os.getenv("DB_HOST", "localhost"),
-    "user": os.getenv("DB_USER", "root"),
-    "password": "3994",
-    "database": os.getenv("DB_NAME", "hospital_db")
+    "host": os.getenv("DB_HOST", "sql12.freesqldatabase.com"),
+    "user": "sql12832200",
+    "password": "Rajput@51908",
+    "database":"sql12832200"
 }
 
 razorpay_client = razorpay.Client(auth=(
@@ -27,7 +27,7 @@ razorpay_client = razorpay.Client(auth=(
 ))
 
 
-def hash_password(password: str) -> str:
+def hash_password(password):
     return hashlib.sha256(password.encode()).hexdigest()
 
 
@@ -355,15 +355,24 @@ def bills():
     if request.method == "POST":
         appointment_id = request.form.get("appointment_id") or None
 
+        consultation_fee = float(request.form["consultation_fee"])
+        medicine_fee = float(request.form["medicine_fee"])
+        lab_fee = float(request.form["lab_fee"])
+        total_amount = consultation_fee + medicine_fee + lab_fee
+
         execute("""
-            INSERT INTO bills(patient_id, appointment_id, consultation_fee, medicine_fee, lab_fee, payment_status)
-            VALUES(%s,%s,%s,%s,%s,%s)
+            INSERT INTO bills(
+                patient_id, appointment_id, consultation_fee,
+                medicine_fee, lab_fee, total_amount, payment_status
+            )
+            VALUES(%s,%s,%s,%s,%s,%s,%s)
         """, (
             request.form["patient_id"],
             appointment_id,
-            request.form["consultation_fee"],
-            request.form["medicine_fee"],
-            request.form["lab_fee"],
+            consultation_fee,
+            medicine_fee,
+            lab_fee,
+            total_amount,
             request.form["payment_status"]
         ))
 
@@ -417,6 +426,8 @@ def book_appointment():
             (doctor_id,)
         )
 
+        fee = float(doctor["consultation_fee"])
+
         execute("""
             INSERT INTO appointments(patient_id, doctor_id, appointment_date, appointment_time, status, notes)
             VALUES(%s,%s,%s,%s,%s,%s)
@@ -432,14 +443,18 @@ def book_appointment():
         appointment = fetch_one("SELECT id FROM appointments ORDER BY id DESC LIMIT 1")
 
         execute("""
-            INSERT INTO bills(patient_id, appointment_id, consultation_fee, medicine_fee, lab_fee, payment_status)
-            VALUES(%s,%s,%s,%s,%s,%s)
+            INSERT INTO bills(
+                patient_id, appointment_id, consultation_fee,
+                medicine_fee, lab_fee, total_amount, payment_status
+            )
+            VALUES(%s,%s,%s,%s,%s,%s,%s)
         """, (
             patient["id"],
             appointment["id"],
-            doctor["consultation_fee"],
+            fee,
             0,
             0,
+            fee,
             "Pending"
         ))
 
@@ -456,21 +471,13 @@ def my_bills():
         flash("Only patients can access this page.", "danger")
         return redirect(url_for("dashboard"))
 
-    patient = fetch_one(
-        "SELECT id FROM patients WHERE user_id=%s",
-        (session["user_id"],)
-    )
-
-    if not patient:
-        return render_template("my_bills.html", bills=[])
-
     bills_data = fetch_all("""
         SELECT b.*, p.name AS patient_name
         FROM bills b
         JOIN patients p ON b.patient_id = p.id
-        WHERE b.patient_id=%s
+        WHERE p.user_id=%s
         ORDER BY b.id DESC
-    """, (patient["id"],))
+    """, (session["user_id"],))
 
     return render_template("my_bills.html", bills=bills_data)
 

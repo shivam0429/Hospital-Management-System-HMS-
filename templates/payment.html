@@ -16,6 +16,12 @@ var options = {
         + response.razorpay_payment_id
         + "&order_id=" + response.razorpay_order_id
         + "&signature=" + response.razorpay_signature;
+    },
+
+    "modal": {
+        "ondismiss": function(){
+            window.location.href = "{{ url_for('my_bills') if session.get('role') == 'Patient' else url_for('bills') }}";
+        }
     }
 };
 
