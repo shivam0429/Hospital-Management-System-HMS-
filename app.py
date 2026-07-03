@@ -15,18 +15,10 @@ app = Flask(__name__)
 app.secret_key = os.getenv("FLASK_SECRET_KEY", "hospital-dev-secret")
 
 DB_CONFIG = {
-    "host": os.
-<<<<<<< HEAD
-    "host": os.getenv("DB_HOST", "sql12.freesqldatabase.com"),
-    "user": "sql12832200",
-    "password": "Rajput@51908",
-    "database":"sql12832200"
-=======
     "host": os.getenv("DB_HOST", "localhost"),
     "user": os.getenv("DB_USER", "root"),
     "password": os.getenv("DB_PASSWORD"),
     "database": os.getenv("DB_NAME", "hospital_db")
->>>>>>> a018e6be6710f18a6143564e6bcb2a1ab40e4f80
 }
 
 razorpay_client = razorpay.Client(auth=(
@@ -565,4 +557,4 @@ def db_error(error):
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True)run(debug=True)
