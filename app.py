@@ -17,7 +17,7 @@ app.secret_key = os.getenv("FLASK_SECRET_KEY", "hospital-dev-secret")
 DB_CONFIG = {
     "host": os.getenv("DB_HOST", "localhost"),
     "user": os.getenv("DB_USER", "root"),
-    "password": "3994",
+    "password": os.getenv("DB_PASSWORD"),
     "database": os.getenv("DB_NAME", "hospital_db")
 }
 
