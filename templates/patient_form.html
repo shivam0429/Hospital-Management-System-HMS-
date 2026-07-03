@@ -1,0 +1,12 @@
+{% extends 'base.html' %}{% block title %}{{ 'Edit' if patient else 'Add' }} Patient{% endblock %}{% block content %}
+<section class="panel form-panel"><form method="POST" class="grid-form">
+  <input name="name" placeholder="Full Name" value="{{ patient.name if patient else '' }}" required>
+  <input type="number" name="age" placeholder="Age" value="{{ patient.age if patient else '' }}" required>
+  <select name="gender" required><option>Male</option><option>Female</option><option>Other</option></select>
+  <input name="phone" placeholder="Phone" value="{{ patient.phone if patient else '' }}" required>
+  <input name="blood_group" placeholder="Blood Group" value="{{ patient.blood_group if patient else '' }}">
+  <textarea name="address" placeholder="Address">{{ patient.address if patient else '' }}</textarea>
+  <textarea name="medical_history" placeholder="Medical History">{{ patient.medical_history if patient else '' }}</textarea>
+  <button>{{ 'Update' if patient else 'Save' }} Patient</button>
+</form></section>
+{% endblock %}

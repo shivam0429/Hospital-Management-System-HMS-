@@ -1,0 +1,27 @@
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<p>Opening payment window...</p>
+
+<script>
+var options = {
+    "key": "{{ key }}",
+    "amount": "{{ amount }}",
+    "currency": "INR",
+    "name": "Hospital Management System",
+    "description": "Bill Payment",
+    "order_id": "{{ order_id }}",
+
+    "handler": function (response){
+        window.location.href = "/payment-success/{{ bill.id }}?payment_id="
+        + response.razorpay_payment_id
+        + "&order_id=" + response.razorpay_order_id
+        + "&signature=" + response.razorpay_signature;
+    }
+};
+
+var rzp1 = new Razorpay(options);
+
+window.onload = function(){
+    rzp1.open();
+};
+</script>

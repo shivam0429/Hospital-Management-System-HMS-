@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}My Bills{% endblock %}
+
+{% block content %}
+<section class="panel">
+    <h2>My Bills</h2>
+
+    {% if bills %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Patient</th>
+                    <th>Total Amount</th>
+                    <th>Status</th>
+                    <th>Payment</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for b in bills %}
+                <tr>
+                    <td>{{ b.patient_name }}</td>
+                    <td><strong>₹{{ b.total_amount }}</strong></td>
+                    <td>{{ b.payment_status }}</td>
+                    <td>
+                        {% if b.payment_status != 'Paid' %}
+                            <a href="{{ url_for('pay_bill', bill_id=b.id) }}" class="btn-pay">
+                                Pay Now
+                            </a>
+                        {% else %}
+                            <span class="badge">Paid</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No bills found. Please book an appointment first.</p>
+    {% endif %}
+</section>
+{% endblock %}

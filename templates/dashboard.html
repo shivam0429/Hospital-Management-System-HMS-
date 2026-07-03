@@ -1,0 +1,9 @@
+{% extends 'base.html' %}{% block title %}Dashboard{% endblock %}{% block content %}
+<section class="cards">
+  <div class="card"><span>Total Patients</span><strong>{{ stats.patients }}</strong></div>
+  <div class="card"><span>Doctors</span><strong>{{ stats.doctors }}</strong></div>
+  <div class="card"><span>Scheduled Appointments</span><strong>{{ stats.appointments }}</strong></div>
+  <div class="card"><span>Paid Revenue</span><strong>₹{{ stats.revenue }}</strong></div>
+</section>
+<section class="panel"><h2>Recent Appointments</h2><table><thead><tr><th>Patient</th><th>Doctor</th><th>Date</th><th>Time</th><th>Status</th></tr></thead><tbody>{% for a in upcoming %}<tr><td>{{ a.patient_name }}</td><td>{{ a.doctor_name }}</td><td>{{ a.appointment_date }}</td><td>{{ a.appointment_time }}</td><td><span class="badge">{{ a.status }}</span></td></tr>{% endfor %}</tbody></table></section>
+{% endblock %}

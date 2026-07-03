@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Login | MedCare HMS</title><link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"></head>
+<body class="login-page">
+  <div class="login-card">
+    <div class="logo">+</div><h2>MedCare HMS</h2><p>Secure Hospital Management Dashboard</p>
+    {% with messages = get_flashed_messages(with_categories=true) %}{% for category, message in messages %}<div class="alert {{ category }}">{{ message }}</div>{% endfor %}{% endwith %}
+    <form method="POST">
+      <label>Username</label><input type="text" name="username" value="admin" required>
+      <label>Password</label><input type="password" name="password" placeholder="admin123" required>
+      <button type="submit">Login</button>
+    </form>
+    <small>Default: admin / admin123</small>
+  </div>
+  <p style="margin-top:15px;">
+    New patient?
+    <a href="{{ url_for('patient_signup') }}">Create Patient Account</a>
+</p>
+</body></html>

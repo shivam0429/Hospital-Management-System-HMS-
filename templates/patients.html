@@ -1,0 +1,4 @@
+{% extends 'base.html' %}{% block title %}Patients{% endblock %}{% block content %}
+<div class="actions"><form><input name="q" value="{{ q }}" placeholder="Search patient, phone, blood group"><button>Search</button></form><a class="btn" href="{{ url_for('add_patient') }}">+ Add Patient</a></div>
+<section class="panel"><table><thead><tr><th>Name</th><th>Age</th><th>Gender</th><th>Phone</th><th>Blood</th><th>Actions</th></tr></thead><tbody>{% for p in patients %}<tr><td>{{ p.name }}</td><td>{{ p.age }}</td><td>{{ p.gender }}</td><td>{{ p.phone }}</td><td>{{ p.blood_group }}</td><td><a href="{{ url_for('edit_patient', id=p.id) }}">Edit</a> | <a class="danger-link" onclick="return confirm('Delete patient?')" href="{{ url_for('delete_patient', id=p.id) }}">Delete</a></td></tr>{% endfor %}</tbody></table></section>
+{% endblock %}
