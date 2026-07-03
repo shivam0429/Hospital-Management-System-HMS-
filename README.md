@@ -211,20 +211,23 @@ Add screenshots here.
 
 Example:
 
-```
-screenshots/
-<img width="1210" height="847" alt="image" src="https://github.com/user-attachments/assets/b0a8abb3-8cd9-4578-bc60-67c7d1b0bdc7" />
 
-<img width="1900" height="690" alt="image" src="https://github.com/user-attachments/assets/7db663f9-2c57-4f7c-8c54-feac5fa8d95e" />
+<img width="1210" height="847" alt="image" src="https://github.com/user-attachments/assets/85ca5352-abe7-4285-8827-2431690e8440" />
 
+<img width="1896" height="772" alt="image" src="https://github.com/user-attachments/assets/0f1a23a9-06ed-41dc-9ba1-47fe9f43b017" />
 
-<img width="1900" height="690" alt="image" src="https://github.com/user-attachments/assets/59124406-8cf1-44ae-8e67-4080016504f7" />
+<img width="1906" height="807" alt="image" src="https://github.com/user-attachments/assets/2262e035-e951-4901-a996-96297e72a7d9" />
 
 
-<img width="1917" height="802" alt="image" src="https://github.com/user-attachments/assets/0a7a1008-7b15-4ec9-822f-9ad3e1a86374" />
+
+<img width="1900" height="690" alt="image" src="https://github.com/user-attachments/assets/329bc397-07f6-4ef8-80d7-898218100997" />
+<img width="1842" height="827" alt="image" src="https://github.com/user-attachments/assets/0838a832-dee0-4974-b8b1-6dc1fa471ead" />
 
 
-<img width="1727" height="851" alt="image" src="https://github.com/user-attachments/assets/63c0e6b8-d0f1-4a5b-8c54-90c607bd7772" />
+<img width="1917" height="802" alt="image" src="https://github.com/user-attachments/assets/ed90e4ac-27ea-43ee-9417-33da0a344798" />
+
+
+<img width="1727" height="851" alt="image" src="https://github.com/user-attachments/assets/64bdfbd8-3ee3-48ff-a102-dd4d08315174" />
 
 
 ---
