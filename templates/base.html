@@ -9,7 +9,7 @@
 </head>
 <body>
   <aside class="sidebar">
-{% if session.get('role') == 'Admin' %}
+{% if session.get('role') == 'admin' %}
     <a href="{{ url_for('dashboard') }}">Dashboard</a>
     <a href="{{ url_for('patients') }}">Patients</a>
     <a href="{{ url_for('doctors') }}">Doctors</a>
