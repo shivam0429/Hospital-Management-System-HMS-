@@ -4,7 +4,7 @@ A full-stack Hospital Management System built with **Python (Flask)** and **MySQ
 
 ## 🌐 Live Demo
 
-**Live Website:** https://hospital-management-system-hms-zved.onrender.com
+**Live Website:** https://hospital-management-system-hms-8k7i.onrender.com
 
 ---
 
